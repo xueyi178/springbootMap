@@ -1,0 +1,54 @@
+#配置端口号
+server:
+  port: 8080
+
+#邮件系统配置
+mail: 
+   #邮件发送方
+   mailSendName: 987894190@qq.com
+   #邮件是否开启
+   open: true
+        
+#引用开发环境的数据配置文件
+spring:
+    profiles: 
+        active: dev
+    mail: 
+     host: smtp.qq.com
+     username: 987894190@qq.com
+     password: xlnwkankoecxbfif
+     default-encoding: UTF-8
+     properties: 
+       mail: 
+        smtp: 
+         auth: true
+         starttls: 
+           enable: true
+           required: true
+ 
+lance:
+  mail:
+    sender: 987894190@qq.com
+ 
+#mybatis配置文件
+mybatis:
+    #扫描实体类
+    # type-aliases-package: com.mdf.sms.domain
+    #扫描mybatis文件
+     mapper-locations: classpath:mybatis/*.xml
+#开启控制台打印sql语句，一般用于本地开发测试
+     configuration:
+           log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#pagehelper分页插件配置
+pagehelper:
+   helperDialect: mysql
+   reasonable: true
+   supportMethodsArguments: true
+   params: countSql
+ 
+logging:
+  level: 
+    root: INFO #日志配置DEBUG,INFO,WARN,ERROR
+  #file: sms-platform.log #配置日志生成路径
+  #path: /var/logs #配置日志文件名称
