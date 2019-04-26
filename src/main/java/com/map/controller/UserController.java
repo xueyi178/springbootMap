@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.map.service.IMbUserService;
 import com.map.utils.R;
 import com.map.utils.WebUtils;
-import com.map.utils.dto.Dto;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -39,8 +38,7 @@ public class UserController {
 	@PostMapping(value="/insertUser")
 	@ApiOperation(httpMethod = "POST", value = "添加用户")	
 	public R insertUser(HttpServletRequest request) {
-		Dto inDto = WebUtils.getParamAsDto(request);
-	   return mbUserService.insertUser(inDto);
+	   return mbUserService.insertUser(WebUtils.getParamAsDto(request));
 	}
 	
 	/**
@@ -52,8 +50,7 @@ public class UserController {
 	@ApiOperation(httpMethod = "POST", value = "查询用户")	
 	public R listUser(
 			@ApiParam(name="id", value="用户id", required= true)@RequestParam("id") Integer id, HttpServletRequest request) {
-		Dto inDto = WebUtils.getParamAsDto(request);
-	   return mbUserService.listUser(inDto);
+	   return mbUserService.listUser(WebUtils.getParamAsDto(request));
 	}
 	
 }
