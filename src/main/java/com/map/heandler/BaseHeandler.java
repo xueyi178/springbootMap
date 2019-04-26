@@ -17,27 +17,27 @@ import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExceptio
 public class BaseHeandler {
 
 	@ExceptionHandler				
-    public R handleException(IllegalArgumentException e) {
-        return R.error().put("msg", e.getMessage());
-    }
-	
+	public R handleException(IllegalArgumentException e) {
+		return R.error().put("msg", e.getMessage());
+	}
+
 	@ExceptionHandler				
-    public R handleException(RuntimeException e) {
-        return R.error().put("msg", e.getMessage());
-    }
-	
-    @ExceptionHandler				
-    public R handleException(MissingServletRequestParameterException e) {
-        return R.error().put("msg", e.getMessage());
-    }
-	
+	public R handleException(RuntimeException e) {
+		return R.error().put("msg", e.getMessage());
+	}
+
 	@ExceptionHandler				
-    public R handleException(MySQLIntegrityConstraintViolationException e) {
-        return R.error().put("msg", e.getMessage());
-    }
-    
-    @ExceptionHandler				
-    public R handleException(DataIntegrityViolationException e) {
-        return R.error().put("msg", e.getMessage());
-    }
+	public R handleException(MissingServletRequestParameterException e) {
+		return R.error().put("msg", e.getMessage());
+	}
+
+	@ExceptionHandler				
+	public R handleException(MySQLIntegrityConstraintViolationException e) {
+		return R.error().put("msg", e.getMessage());
+	}
+
+	@ExceptionHandler				
+	public R handleException(DataIntegrityViolationException e) {
+		return R.error().put("msg", e.getMessage());
+	}
 }
