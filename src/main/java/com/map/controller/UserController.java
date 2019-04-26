@@ -4,12 +4,17 @@ import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.map.service.IMbUserService;
 import com.map.utils.R;
 import com.map.utils.WebUtils;
 import com.map.utils.dto.Dto;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 /**
  * 1、控制层
@@ -20,6 +25,7 @@ import com.map.utils.dto.Dto;
  */
 @RestController
 @RequestMapping(value="/user")
+@Api(tags= {"user操作的API"})
 public class UserController {
 
 	@Autowired
@@ -31,6 +37,7 @@ public class UserController {
 	 * @return
 	 */
 	@PostMapping(value="/insertUser")
+	@ApiOperation(httpMethod = "POST", value = "添加用户")	
 	public R insertUser(HttpServletRequest request) {
 		Dto inDto = WebUtils.getParamAsDto(request);
 	   return mbUserService.insertUser(inDto);
@@ -42,7 +49,9 @@ public class UserController {
 	 * @return
 	 */
 	@PostMapping(value="/listUser")
-	public R listUser(HttpServletRequest request) {
+	@ApiOperation(httpMethod = "POST", value = "查询用户")	
+	public R listUser(
+			@ApiParam(name="id", value="用户id", required= true)@RequestParam("id") Integer id, HttpServletRequest request) {
 		Dto inDto = WebUtils.getParamAsDto(request);
 	   return mbUserService.listUser(inDto);
 	}
