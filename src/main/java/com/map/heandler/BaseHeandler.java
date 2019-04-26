@@ -1,9 +1,11 @@
 package com.map.heandler;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import com.map.utils.R;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 /**
  * 1、全局异常
  * 项目名称：springbootMap 
@@ -23,9 +25,19 @@ public class BaseHeandler {
     public R handleException(RuntimeException e) {
         return R.error().put("msg", e.getMessage());
     }
-    
+	
     @ExceptionHandler				
     public R handleException(MissingServletRequestParameterException e) {
+        return R.error().put("msg", e.getMessage());
+    }
+	
+	@ExceptionHandler				
+    public R handleException(MySQLIntegrityConstraintViolationException e) {
+        return R.error().put("msg", e.getMessage());
+    }
+    
+    @ExceptionHandler				
+    public R handleException(DataIntegrityViolationException e) {
         return R.error().put("msg", e.getMessage());
     }
 }
