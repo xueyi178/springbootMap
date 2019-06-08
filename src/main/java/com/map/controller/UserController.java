@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.map.aspect.ApiIdempotent;
 import com.map.aspect.WebLog;
 import com.map.service.IMbUserService;
 import com.map.utils.R;
 import com.map.utils.WebUtils;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -47,6 +47,7 @@ public class UserController {
 	 * @param params
 	 * @return
 	 */
+	@ApiIdempotent
 	@PostMapping(value="/listUser")
 	@WebLog(description = "根据id查询用户信息")
 	@ApiOperation(httpMethod = "POST", value = "查询用户")	

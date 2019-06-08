@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("rawtypes")
 public interface Dto extends Map {
 	/**
 	 * 以Integer类型返回键值

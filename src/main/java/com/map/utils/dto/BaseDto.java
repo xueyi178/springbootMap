@@ -208,6 +208,7 @@ public class BaseDto extends HashMap implements Dto, Serializable {
 	 * 给Dto压入一个默认的Json格式字符串
 	 * @param jsonString
 	 */
+	@SuppressWarnings("unchecked")
 	public void setDefaultJson(String jsonString){
 		put("defaultJsonString", jsonString);
 	}

@@ -92,7 +92,8 @@ public class LogAspect {
      * @return 描述信息
      * @throws Exception
      */
-    public String getAspectLogDescription(JoinPoint joinPoint)
+    @SuppressWarnings("rawtypes")
+	public String getAspectLogDescription(JoinPoint joinPoint)
             throws Exception {
         String targetName = joinPoint.getTarget().getClass().getName();
         String methodName = joinPoint.getSignature().getName();
