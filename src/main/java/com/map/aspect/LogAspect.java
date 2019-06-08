@@ -1,5 +1,6 @@
 package com.map.aspect;
 
+import java.lang.reflect.Method;
 import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,14 +46,19 @@ public class LogAspect {
 
 	// 请求method前打印内容
 	@Before(value = "controllerAspect()")
-	public void methodBefore(JoinPoint joinPoint) {
+	public void methodBefore(JoinPoint joinPoint) throws Exception {
+		 // 开始打印请求日志
 		startTime.set(System.currentTimeMillis());
 		ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder
 				.getRequestAttributes();
 		HttpServletRequest request = requestAttributes.getRequest();
+		
+		 // 获取 @WebLog 注解的描述信息
+        String methodDescription = getAspectLogDescription(joinPoint);
 		log.info("========================================== 请求内容开始 ==========================================");
 		try {
 			// 打印请求内容
+			log.info("请求的接口描述   	: {}", methodDescription);
 			log.info("请求URL地址		: {}", request.getRequestURL().toString());
 			log.info("请求IP地址		: {}", request.getRemoteAddr());
 			log.info("请求方式		: {}", request.getMethod());
@@ -78,4 +84,32 @@ public class LogAspect {
 		log.info("请求处理时间为		: {} ", (System.currentTimeMillis() - startTime.get())+"MS");
 		log.info("========================================== 返回内容结束 ==========================================" + LINE_SEPARATOR);
 	}
+	
+	 /**
+     * 获取切面注解的描述
+     *
+     * @param joinPoint 切点
+     * @return 描述信息
+     * @throws Exception
+     */
+    public String getAspectLogDescription(JoinPoint joinPoint)
+            throws Exception {
+        String targetName = joinPoint.getTarget().getClass().getName();
+        String methodName = joinPoint.getSignature().getName();
+        Object[] arguments = joinPoint.getArgs();
+        Class targetClass = Class.forName(targetName);
+        Method[] methods = targetClass.getMethods();
+        StringBuilder description = new StringBuilder("");
+        for (Method method : methods) {
+            if (method.getName().equals(methodName)) {
+                Class[] clazzs = method.getParameterTypes();
+                if (clazzs.length == arguments.length) {
+                    description.append(method.getAnnotation(WebLog.class).description());
+                    break;
+                }
+            }
+        }
+        return description.toString();
+    }
+
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.map.aspect.WebLog;
 import com.map.service.IMbUserService;
 import com.map.utils.R;
 import com.map.utils.WebUtils;
@@ -47,6 +48,7 @@ public class UserController {
 	 * @return
 	 */
 	@PostMapping(value="/listUser")
+	@WebLog(description = "根据id查询用户信息")
 	@ApiOperation(httpMethod = "POST", value = "查询用户")	
 	public R listUser(
 			@ApiParam(name="id", value="用户id", required= true)@RequestParam("id") Integer id, HttpServletRequest request) {
