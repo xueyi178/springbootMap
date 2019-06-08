@@ -4,9 +4,12 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.commons.collections4.map.HashedMap;
+
+import ch.qos.logback.core.net.SyslogOutputStream;
 /**
  * 1、BaseDto
  * 项目名称：springbootMap 
@@ -15,7 +18,7 @@ import org.apache.commons.collections4.map.HashedMap;
  * 开发时间：2019年4月25日下午10:21:15
  */
 @SuppressWarnings("rawtypes")
-public class BaseDto extends HashedMap implements Dto, Serializable {
+public class BaseDto extends HashMap implements Dto, Serializable {
 
 	/**
 	 * 序列化
@@ -26,6 +29,7 @@ public class BaseDto extends HashedMap implements Dto, Serializable {
 
 	@SuppressWarnings("unchecked")
 	public BaseDto(String key, Object value){
+		System.out.println("KEY"+ key+ "VALUE"+ value);
 		put(key, value);
 	}
 

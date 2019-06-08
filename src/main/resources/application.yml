@@ -37,8 +37,8 @@ mybatis:
     #扫描mybatis文件
      mapper-locations: classpath:mybatis/*.xml
 #开启控制台打印sql语句，一般用于本地开发测试
-     configuration:
-           log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+     #configuration:
+      #     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 #pagehelper分页插件配置
 pagehelper:
