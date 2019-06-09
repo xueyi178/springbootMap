@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.map.aspect.AccessLimit;
 import com.map.aspect.ApiIdempotent;
 import com.map.aspect.WebLog;
 import com.map.service.IMbUserService;
@@ -43,17 +44,30 @@ public class UserController {
 	}
 	
 	/**
-	 * 2、查询用户
+	 * 2、根据id查询用户信息
 	 * @param params
 	 * @return
 	 */
 	@ApiIdempotent
-	@PostMapping(value="/listUser")
+	@PostMapping(value="/getUser")
 	@WebLog(description = "根据id查询用户信息")
-	@ApiOperation(httpMethod = "POST", value = "查询用户")	
-	public R listUser(
+	@ApiOperation(httpMethod = "POST", value = "根据id查询用户信息")	
+	public R getUser(
 			@ApiParam(name="id", value="用户id", required= true)@RequestParam("id") Integer id, HttpServletRequest request) {
-	   return mbUserService.listUser(WebUtils.getParamAsDto(request));
+	   return mbUserService.getUser(WebUtils.getParamAsDto(request));
+	}
+	
+	/**
+	 * 3.查询用户信息
+	 * @param request
+	 * @return
+	 */
+	@AccessLimit(maxCount = 5, seconds = 1)
+	@PostMapping(value="/listUser")
+	@WebLog(description = "查询用户信息")
+	@ApiOperation(httpMethod = "POST", value = "查询用户信息")	
+	public R listUser(HttpServletRequest request) {
+		return mbUserService.listUser(WebUtils.getParamAsDto(request));
 	}
 	
 }

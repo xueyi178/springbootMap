@@ -16,6 +16,11 @@
     select 
     <include refid="Base_Column_List" />
     from mb_user
+  </select>
+  <select id="getUser" parameterType="com.map.utils.dto.BaseDto" resultType="com.map.utils.dto.BaseDto">
+    select 
+    <include refid="Base_Column_List" />
+    from mb_user
     where id = #{id,jdbcType=BIGINT}
   </select>
 </mapper>

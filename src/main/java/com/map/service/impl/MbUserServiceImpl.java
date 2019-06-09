@@ -18,13 +18,8 @@ import com.map.utils.dto.Dto;
  * 开发时间：2019年4月25日下午9:14:45
  */
 @Service
-public class MbUserServiceImpl extends R implements IMbUserService {
+public class MbUserServiceImpl implements IMbUserService {
 
-	/**
-	 * 序列化
-	 */
-	private static final long serialVersionUID = 5683853457721042013L;
-	
 	@Autowired
 	private MbUserMapper mbUserMapper;
 	
@@ -39,7 +34,7 @@ public class MbUserServiceImpl extends R implements IMbUserService {
 		params.put("updated", new Date());
 		int falg = mbUserMapper.insertUser(params);
 		if(falg > 0) {
-			return this.ok();
+			return R.ok();
 		}
 		return R.error();
 	}
@@ -54,9 +49,21 @@ public class MbUserServiceImpl extends R implements IMbUserService {
 	public R listUser(Dto params) {
 		List<Dto> primaryKey = mbUserMapper.selectByPrimaryKey(params);
 		if(primaryKey != null && primaryKey.size() > 0) {
-			return this.ok().put("data", primaryKey);
+			return R.ok().put("data", primaryKey);
 		}
-		return this.error().put("msg", "用户信息不存在");
+		return R.error().put("msg", "用户信息不存在");
+	}
+
+	/**
+	 * 3.根据id查询用户信息
+	 */
+	@Override
+	public R getUser(Dto params) {
+		Dto user = mbUserMapper.getUser(params);
+		if(user != null) {
+			return R.ok().put("data", user);
+		}
+		return R.error().put("msg", "用户信息不存在");
 	}
 
 }

@@ -27,7 +27,7 @@ public class MyControllerAdvice {
     @ResponseBody
     @ExceptionHandler(Exception.class)
     public R exceptionHandler(Exception e) {
-        log.error("Exception: ", e);
+        log.error("Exception: {}", e.getMessage());
         return R.error(ResponseCode.SERVER_ERROR.getMsg());
     }
 

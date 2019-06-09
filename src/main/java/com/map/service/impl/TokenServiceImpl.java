@@ -13,6 +13,8 @@ import com.map.service.ITokenService;
 import com.map.utils.JedisUtil;
 import com.map.utils.R;
 import com.map.utils.RandomUtil;
+
+import lombok.extern.slf4j.Slf4j;
 /**
  * 1.创建token的业务逻辑层实现类
  * 项目名称：springbootMap 
@@ -21,6 +23,7 @@ import com.map.utils.RandomUtil;
  * 开发时间：2019年6月8日下午6:52:20
  */
 @Service
+@Slf4j
 public class TokenServiceImpl implements ITokenService{
 
 	private static final String TOKEN_NAME = "token";
@@ -46,20 +49,23 @@ public class TokenServiceImpl implements ITokenService{
 	@Override
 	public void checkToken(HttpServletRequest request) {
 		String token = request.getHeader(TOKEN_NAME);
-		if (StringUtils.isBlank(token)) {// header中不存在token
+		// header中不存在token
+		if (StringUtils.isBlank(token)) {
+			// header中不存在token
 			token = request.getParameter(TOKEN_NAME);
-			if (StringUtils.isBlank(token)) {// parameter中也不存在token
+			// parameter中也不存在token
+			if (StringUtils.isBlank(token)) {
 				throw new ServiceException(ResponseCode.ILLEGAL_ARGUMENT.getMsg());
 			}
 		}
-
+		
 		if (!jedisUtil.exists(token)) {
-			throw new ServiceException(ResponseCode.REPETITIVE_OPERATION.getMsg());
-		}
-
+            throw new ServiceException(ResponseCode.REPETITIVE_OPERATION.getMsg());
+        }
+		
 		Long del = jedisUtil.del(token);
-		//if (del <= 0) {
-		//	throw new ServiceException(ResponseCode.REPETITIVE_OPERATION.getMsg());
-		//}
+		if(del.intValue() != 0) {
+			log.info("进入了TokenServiceImpl中checkToken方法,删除[{}]成功", token);
+		}
 	}
 }

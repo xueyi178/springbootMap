@@ -19,4 +19,11 @@ public interface MbUserMapper {
 	 * @return
 	 */
 	List<Dto> selectByPrimaryKey(Dto params);
+	
+	/**
+	 * 2、查询用户
+	 * @param params
+	 * @return
+	 */
+	Dto getUser(Dto params);
 }

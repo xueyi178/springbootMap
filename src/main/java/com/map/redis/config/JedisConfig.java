@@ -5,7 +5,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
-
+/**
+ * 1.设置Jedis的连接池
+ * 项目名称：springbootMap 
+ * 类名称：JedisConfig
+ * 开发者：Lenovo
+ * 开发时间：2019年6月9日上午11:31:30
+ */
 @Configuration
 public class JedisConfig {
 
@@ -37,6 +43,7 @@ public class JedisConfig {
         jedisPoolConfig.setMaxWaitMillis(maxWait);
         jedisPoolConfig.setMinIdle(minIdle);
 
+        //有密码: JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout, password);
         JedisPool jedisPool = new JedisPool(jedisPoolConfig, host, port, timeout);
 
         return jedisPool;

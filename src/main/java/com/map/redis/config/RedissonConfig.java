@@ -22,6 +22,7 @@ public class RedissonConfig {
     @Bean
     public RedissonClient redissonClient() {
         Config config = new Config();
+        //有密码 config.useSingleServer().setAddress("redis://" + host + ":" + port).setPassword(password);
         config.useSingleServer().setAddress("redis://" + host + ":" + port);
         return Redisson.create(config);
     }

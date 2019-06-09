@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.map.interceptor.AccessLimitInterceptor;
 import com.map.interceptor.ApiIdempotentInterceptor;
 /**
  * 1.配置拦截器
@@ -19,9 +20,13 @@ public class InterceptorConfig implements WebMvcConfigurer{
 	@Autowired
 	private ApiIdempotentInterceptor apiIdempotentInterceptor;
 
+	@Autowired
+	private AccessLimitInterceptor accessLimitInterceptor;
+	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(apiIdempotentInterceptor);
+		registry.addInterceptor(accessLimitInterceptor);
 		WebMvcConfigurer.super.addInterceptors(registry);
 	}
 }

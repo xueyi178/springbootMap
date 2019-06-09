@@ -24,4 +24,11 @@ public interface IMbUserService {
 	 * @return
 	 */
 	R listUser(Dto params);
+	
+	/**
+	 * 3、根据id查询用户
+	 * @param params
+	 * @return
+	 */
+	R getUser(Dto params);
 }
