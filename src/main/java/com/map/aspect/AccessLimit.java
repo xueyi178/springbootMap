@@ -5,7 +5,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 /**
- * 1.接口限流
+ * 1.在需要保证 接口限流 的Controller的方法上使用此注解
  * 项目名称：springbootMap 
  * 类名称：AccessLimit
  * 开发者：Lenovo
