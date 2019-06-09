@@ -71,6 +71,7 @@ public class WebUtils {
 	 * @param request
 	 * @return
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static Dto getParamAsDto(HttpServletRequest request) {
 		Dto dto = new BaseDto();
 		Map map = request.getParameterMap();

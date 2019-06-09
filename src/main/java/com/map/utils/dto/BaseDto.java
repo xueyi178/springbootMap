@@ -6,10 +6,6 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
-
-import org.apache.commons.collections4.map.HashedMap;
-
-import ch.qos.logback.core.net.SyslogOutputStream;
 /**
  * 1、BaseDto
  * 项目名称：springbootMap 
