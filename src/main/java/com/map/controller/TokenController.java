@@ -4,7 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.map.aspect.WebLog;
+
+import com.map.annotation.WebLog;
 import com.map.service.ITokenService;
 import com.map.utils.R;
 

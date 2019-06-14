@@ -11,7 +11,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.map.aspect.ApiIdempotent;
+import com.map.annotation.ApiIdempotent;
 import com.map.service.ITokenService;
 
 /**

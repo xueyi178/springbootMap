@@ -1,4 +1,4 @@
-package com.map.aspect;
+package com.map.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

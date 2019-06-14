@@ -11,7 +11,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.map.aspect.AccessLimit;
+import com.map.annotation.AccessLimit;
 import com.map.common.Constant;
 import com.map.common.ResponseCode;
 import com.map.exception.ServiceException;

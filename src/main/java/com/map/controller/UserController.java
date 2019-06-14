@@ -7,12 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.map.aspect.AccessLimit;
-import com.map.aspect.ApiIdempotent;
-import com.map.aspect.WebLog;
+import com.map.annotation.AccessLimit;
+import com.map.annotation.ApiIdempotent;
+import com.map.annotation.WebLog;
 import com.map.service.IMbUserService;
 import com.map.utils.R;
 import com.map.utils.WebUtils;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
